@@ -1,3 +1,6 @@
+# convoy-loadtest-21 is the designated broken deploy in this org: it fails on
+# purpose so a demo wave shows a red card in the Deploys tab, not just green
+# ones. Every other repo here deploys fine with the same release tag.
 name: Deploy
 on:
   push:
@@ -10,6 +13,6 @@ jobs:
       - name: Simulate deploy
         run: |
           echo "Deploying ${GITHUB_REPOSITORY} ${GITHUB_REF_NAME}..."
-          sleep 12
-          echo "done"
-          exit 0
+          sleep 10
+          echo "migration step failed: relation \"sessions\" already exists"
+          exit 1
